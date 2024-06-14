@@ -1,3 +1,10 @@
+/*
+* Curso de Engenharia de Software - UniEVANGÉLICA 
+* Disciplina de Programação Web 
+* Dev: Sebastian Fabian Pires do Carmo 2120283
+* DATA 14/06/2024
+*/ 
+
 // User.php
 class User {
     public $id;
