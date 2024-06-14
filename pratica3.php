@@ -8,15 +8,15 @@
 // User.php
 class User {
     public $id;
-    public $name;
+    public $nome;
     public $email;
-    public $password;
+    public $pass;
 
-    public function __construct($id, $name, $email, $password) {
+    public function __construct($id, $nome, $email, $pass) {
         $this->id = $id;
-        $this->name = $name;
+        $this->name = $nome;
         $this->email = $email;
-        $this->password = $password;
+        $this->password = $pass;
     }
 }
 
@@ -26,9 +26,9 @@ class UserRepository {
         // Save user to database
         DB::table('users')->insert([
             'id' => $user->id,
-            'name' => $user->name,
+            'nome' => $user->nome,
             'email' => $user->email,
-            'password' => $user->password
+            'pass' => $user->pass
         ]);
     }
 
@@ -42,7 +42,7 @@ class UserRepository {
 class EmailService {
     public function sendWelcomeEmail(User $user) {
         // Send welcome email
-        mail($user->email, "Welcome", "Thank you for registering!");
+        mail($user->email, "Obrigado por Registrar");
     }
 }
 
@@ -58,14 +58,14 @@ class CSVExporter {
         $users = $this->userRepository->getAllUsers();
         $csv = "id,name,email\n";
         foreach ($users as $user) {
-            $csv .= "{$user->id},{$user->name},{$user->email}\n";
+            $csv .= "{$user->id},{$user->nome},{$user->email}\n";
         }
         file_put_contents('users.csv', $csv);
     }
 }
 
 // Usage
-$user = new User(1, 'John Doe', 'john@example.com', 'secret');
+$user = new User(1, 'teste', 'teste@example.com', 'senha123');
 $userRepository = new UserRepository();
 $emailService = new EmailService();
 $csvExporter = new CSVExporter($userRepository);
